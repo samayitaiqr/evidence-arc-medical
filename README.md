@@ -1,6 +1,8 @@
 # Evidence Arc Medical Affairs
 
-The existing Evidence Arc design, prepared for hosting independently of ChatGPT and editing through **Pages CMS**.
+**[Open the live Evidence Arc website](https://samayitaiqr.github.io/evidence-arc-medical/)**
+
+The existing Evidence Arc design, hosted free on GitHub Pages with content editing configured for **Pages CMS**.
 
 ## What is ready
 
@@ -9,48 +11,35 @@ The existing Evidence Arc design, prepared for hosting independently of ChatGPT 
 - Image uploads for a logo, homepage image, expertise image and service/case images.
 - Add, remove and reorder service cards and other repeated content.
 - A static build with no third-party runtime or package dependencies.
-- GitHub Actions that test, build and publish changes to GitHub Pages once Pages is enabled.
+- GitHub Actions that test, build and automatically publish changes to GitHub Pages.
 - An `/admin/` page linking to the content editor.
 
 The Pages CMS configuration is supplied in `.pages.yml`. Routine editors do not need to open or change that file.
 
 ## Website and editor links
 
-- **Current live website:** [Evidence Arc](https://evidence-arc-medical.aprameyo.chatgpt.site/). This is the original ChatGPT-hosted version.
+- **Live website:** [Evidence Arc on GitHub Pages](https://samayitaiqr.github.io/evidence-arc-medical/).
 - **Content editor:** [Open Pages CMS](https://app.pagescms.org/), sign in with GitHub and select `samayitaiqr/evidence-arc-medical` on `main`.
-- **GitHub Pages publishing:** prepared in `.github/workflows/pages.yml`; activation in repository settings is still required. Use the **Visit site** link in GitHub's Pages settings after a successful deployment.
+- **Original website:** [ChatGPT-hosted version](https://evidence-arc-medical.aprameyo.chatgpt.site/). This is a separate copy and is not updated by changes here.
 
-This repository contains the prepared, locally checked website. Pages CMS authorization and GitHub Pages activation must be completed before browser edits can update a live website. The original ChatGPT-hosted website is separate and has not been changed by this export.
+The repository is **public**, GitHub Pages is enabled with **GitHub Actions** as its source, and the first deployment succeeded. The site uses GitHub's free address with HTTPS. The website files, source and commit history are publicly visible.
 
-## One-time setup
-
-### 1. Put the project in GitHub
-
-The project is uploaded to [`samayitaiqr/evidence-arc-medical`](https://github.com/samayitaiqr/evidence-arc-medical). It is currently **private**. GitHub Pages from a private personal repository requires GitHub Pro; GitHub Free requires a public repository. Changing repository visibility also exposes its source and history, so it is a separate owner decision.
-
-Upload or push this complete project with `.pages.yml` at the repository root, on the `main` branch. Keep the `content`, `templates`, `public` and `scripts` folders together. The `dist` directory is generated during publishing and need not be committed.
-
-### 2. Enable the editor
+## Enable the content editor on your first visit
 
 1. Open [Pages CMS](https://app.pagescms.org/).
 2. Sign in using the GitHub account that owns the repository.
 3. Install/authorize the Pages CMS GitHub App for **only this repository**.
 4. Open `evidence-arc-medical`, selecting `main`.
 
-The editor will read the supplied configuration and show the content sections automatically. You do not need to create a new configuration or write code.
+The editor configuration is ready, but Pages CMS account authorization still needs to be completed. After authorization, the editor reads the supplied configuration and shows the content sections automatically. You do not need to write code for these content changes.
 
-### 3. Enable GitHub Pages
+## Hosting
 
-1. Open this repository's **Settings → Pages**.
-2. Under **Build and deployment**, set **Source** to **GitHub Actions**.
-3. Open **Actions → Publish website to GitHub Pages → Run workflow**, selecting `main`.
-4. Wait for the build and deployment to succeed, then use **Visit site** in the Pages settings.
+The workflow `.github/workflows/pages.yml` tests the site, builds `dist`, and publishes the generated website whenever `main` changes. It gets the correct base address from GitHub so images and navigation work under the repository path. No domain purchase is needed.
 
-If GitHub asks for an upgrade, the current plan does not support Pages from this private repository. The owner must choose whether to use GitHub Pro or make the source repository public before Pages can be activated.
+Leave **Website url** blank in Pages CMS while using the GitHub-assigned address. To use a purchased domain later, configure it in **Settings → Pages**, then enter that address in **Brand and website settings**.
 
-The supplied workflow tests the site, builds `dist`, and publishes only the generated website. It also takes the site's correct base address from GitHub so images and navigation work under the repository path. No domain purchase is needed.
-
-Leave **Website url** blank in Pages CMS while using the GitHub-assigned address. To use a purchased domain later, first configure it in **Settings → Pages**, then enter that address in **Brand and website settings**. GitHub's hosting usage limits apply; review its restrictions before using Pages for commercial transactions or an online business.
+To republish manually, open **Actions → Publish website to GitHub Pages → Run workflow**, selecting `main`. Deployment status and the **Visit site** link are also available under **Settings → Pages**. GitHub's hosting usage limits apply.
 
 ## Your everyday editing workflow
 
@@ -61,7 +50,7 @@ Leave **Website url** blank in Pages CMS while using the GitHub-assigned address
 5. Select **Save**. Pages CMS commits the changes to GitHub.
 6. GitHub Actions builds and publishes the update. Check the live website when the deployment succeeds.
 
-Saving on `main` starts publication when GitHub Pages is enabled. For a change you want to review before publishing, use a separate branch and merge it when ready.
+Saving on `main` starts publication. For a change you want to review before publishing, use a separate branch and merge it when ready.
 
 ### Images
 
