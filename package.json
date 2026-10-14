@@ -1,0 +1,12 @@
+{
+  "name": "evidence-arc-medical",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Evidence Arc website with Pages CMS content editing",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test test/*.test.mjs"
+  }
+}

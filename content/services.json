@@ -1,0 +1,79 @@
+{
+  "eyebrow": "Capabilities",
+  "heading": "Medical affairs built around the decisions that matter.",
+  "description": "Focused advisory and hands-on delivery—designed to add senior capacity exactly where an internal team needs it.",
+  "cards": [
+    {
+      "title": "Medical strategy & planning",
+      "description": "Translate the asset narrative, treatment landscape and stakeholder needs into a focused medical plan with clear priorities, decisions and measures.",
+      "bullets": [
+        "Medical plans and strategic imperatives",
+        "Landscape and gap assessment",
+        "Lifecycle priorities and KPIs"
+      ],
+      "icon": "strategy",
+      "image": "",
+      "image_description": ""
+    },
+    {
+      "title": "Evidence generation",
+      "description": "Identify the evidence needed to answer clinically relevant questions and connect interventional, real-world and scientific-communication plans.",
+      "bullets": [
+        "Evidence gaps and research questions",
+        "Study concept and design input",
+        "RWE and interventional evidence review"
+      ],
+      "icon": "evidence",
+      "image": "",
+      "image_description": ""
+    },
+    {
+      "title": "Launch & lifecycle readiness",
+      "description": "Build a practical medical readiness plan that aligns field insight, scientific exchange, content, training and cross-functional dependencies.",
+      "bullets": [
+        "Launch-readiness workstreams",
+        "Scientific narrative and training",
+        "Risk, dependency and milestone management"
+      ],
+      "icon": "launch",
+      "image": "",
+      "image_description": ""
+    },
+    {
+      "title": "KOL & advisory-board strategy",
+      "description": "Structure high-value scientific engagement—from stakeholder mapping and objective setting through facilitation and actionable insight synthesis.",
+      "bullets": [
+        "KOL mapping and engagement strategy",
+        "Advisory-board design and delivery",
+        "Insight frameworks and synthesis"
+      ],
+      "icon": "people",
+      "image": "",
+      "image_description": ""
+    },
+    {
+      "title": "Scientific communications",
+      "description": "Turn complex evidence into clear, balanced and audience-relevant scientific narratives, materials and capability-building programs.",
+      "bullets": [
+        "Scientific platform and core content",
+        "Field medical resources",
+        "Training and workshop development"
+      ],
+      "icon": "communications",
+      "image": "",
+      "image_description": ""
+    },
+    {
+      "title": "Medical governance & delivery",
+      "description": "Provide structured project leadership with clear decision rights, timelines, risk control and compliant scientific execution.",
+      "bullets": [
+        "Cross-functional program leadership",
+        "ICH-GCP and safety-aware delivery",
+        "Governance, milestones and reporting"
+      ],
+      "icon": "governance",
+      "image": "",
+      "image_description": ""
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "eyebrow": "Working model",
+  "heading": "Rigorous enough for science. Practical enough for the business.",
+  "description": "Every engagement begins with the decision your team needs to make—not a predefined deliverable. The work then moves through four disciplined stages.",
+  "button": "Scope an engagement",
+  "steps": [
+    {
+      "title": "Frame",
+      "description": "Define the decision, stakeholders, evidence base, constraints and success criteria."
+    },
+    {
+      "title": "Interrogate",
+      "description": "Test assumptions against data, field intelligence and the clinical context."
+    },
+    {
+      "title": "Align",
+      "description": "Create shared priorities, roles and a realistic path across functions."
+    },
+    {
+      "title": "Deliver",
+      "description": "Execute the work, capture learning and leave the team with usable tools."
+    }
+  ]
+}

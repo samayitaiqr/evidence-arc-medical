@@ -1,0 +1,26 @@
+{
+  "eyebrow": "Expertise base",
+  "heading": "A senior scientific partner who understands the full arc.",
+  "introduction": "The consultancy is grounded in 15+ years of international experience across pharmaceutical, medical-device, biotechnology and academic oncology environments—including more than seven post-PhD years.",
+  "description": "That breadth creates a practical bridge between translational science, clinical development, field medical insight and the realities of launch and lifecycle execution.",
+  "facts": [
+    {
+      "title": "Therapy experience",
+      "description": "Targeted therapy\nRadiotherapy\nImmunotherapy"
+    },
+    {
+      "title": "Settings",
+      "description": "Pharma · Medtech\nBiotech · Academia"
+    },
+    {
+      "title": "Geographies",
+      "description": "Europe · Canada\nUnited States"
+    },
+    {
+      "title": "Standards & systems",
+      "description": "ICH-GCP · PV\nVeeva · iEnvision"
+    }
+  ],
+  "image": "",
+  "image_description": ""
+}

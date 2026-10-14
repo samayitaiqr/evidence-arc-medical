@@ -1,0 +1,41 @@
+{
+  "eyebrow": "Selected impact",
+  "heading": "Experience translated into outcomes.",
+  "description": "Anonymized examples from oncology, medical technology and cross-functional medical affairs work.",
+  "cases": [
+    {
+      "category": "Oncology launch",
+      "topic": "Medical readiness",
+      "title": "Connected field insight, scientific exchange and KOL engagement to launch execution.",
+      "description": "Supported medical launch readiness across a West German oncology territory, translating stakeholder needs into focused scientific activity and cross-functional action.",
+      "result": "€1.1M",
+      "result_description": "reported monthly company-level result following launch—context, not causal attribution*",
+      "featured": true,
+      "image": "",
+      "image_description": ""
+    },
+    {
+      "category": "Expert engagement",
+      "topic": "Advisory boards",
+      "title": "Built a repeatable path from expert dialogue to internal decisions.",
+      "description": "Planned and delivered four advisory boards, aligning objectives and content, coordinating expert engagement and synthesizing recommendations for internal teams.",
+      "result": "4",
+      "result_description": "boards delivered across the medical-affairs program",
+      "featured": false,
+      "image": "",
+      "image_description": ""
+    },
+    {
+      "category": "Clinical affairs",
+      "topic": "Evidence strategy",
+      "title": "Integrated clinical evidence with regulatory and business questions.",
+      "description": "Evaluated interventional and real-world evidence for oncology-focused medical technology, translating findings into recommendations for medical, clinical, regulatory and business stakeholders.",
+      "result": "360°",
+      "result_description": "cross-functional view of evidence and development decisions",
+      "featured": false,
+      "image": "",
+      "image_description": ""
+    }
+  ],
+  "footnote": "*Contextual business result following launch; no claim of sole or direct causation is implied."
+}

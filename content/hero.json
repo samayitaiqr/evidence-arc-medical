@@ -1,0 +1,36 @@
+{
+  "eyebrow": "Oncology medical affairs advisory",
+  "headline": "Evidence that moves decisions.",
+  "accent_line": "Strategy that moves programs.",
+  "introduction": "Senior-led support for biotech, pharmaceutical and medtech teams navigating the space between clinical evidence, medical strategy and execution.",
+  "primary_button": "Discuss a project",
+  "secondary_button": "Explore capabilities",
+  "attributes": [
+    "Independent",
+    "Senior-led",
+    "Cross-functional"
+  ],
+  "diagram_label": "Medical value",
+  "diagram_heading": "Clear line of sight",
+  "diagram_description": "From scientific signal to an executable medical plan.",
+  "steps": [
+    {
+      "title": "Insight",
+      "description": "Unmet need & landscape"
+    },
+    {
+      "title": "Evidence",
+      "description": "Data gaps & generation"
+    },
+    {
+      "title": "Strategy",
+      "description": "Priorities & alignment"
+    },
+    {
+      "title": "Execution",
+      "description": "Delivery & learning"
+    }
+  ],
+  "image": "",
+  "image_description": ""
+}

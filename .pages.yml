@@ -1,0 +1,538 @@
+# Pages CMS: form-based editing for the Evidence Arc website.
+media:
+- name: images
+  label: Website images
+  input: public/uploads
+  output: /uploads
+  extensions:
+  - png
+  - jpg
+  - jpeg
+  - webp
+  - gif
+  rename: safe
+content:
+- name: site
+  label: Brand and website settings
+  type: file
+  path: content/site.json
+  format: json
+  fields:
+  - name: brand_name
+    label: Brand name
+    type: string
+    required: true
+  - name: brand_subtitle
+    label: Brand subtitle
+    type: string
+  - name: business_name
+    label: Business name
+    type: string
+    required: true
+  - name: page_title
+    label: Page title
+    type: string
+    required: true
+  - name: description
+    label: Description
+    type: text
+  - name: website_url
+    label: Website url
+    type: string
+    description: After hosting is connected, enter your full website address, for
+      example https://www.yourdomain.com. Leave blank during setup.
+  - name: logo
+    label: Logo
+    type: image
+    options:
+      media: images
+      extensions:
+      - png
+      - jpg
+      - jpeg
+      - webp
+      - gif
+      rename: safe
+    description: Optional. Upload a logo to replace the existing arc symbol. Leave
+      empty to keep the current symbol.
+  - name: social_image
+    label: Social image
+    type: image
+    options:
+      media: images
+      extensions:
+      - png
+      - jpg
+      - jpeg
+      - webp
+      - gif
+      rename: safe
+    description: The image shown when someone shares your website link.
+  - name: social_image_description
+    label: Social image description
+    type: string
+- name: navigation
+  label: Menu labels
+  type: file
+  path: content/navigation.json
+  format: json
+  fields:
+  - name: services
+    label: Services
+    type: string
+  - name: approach
+    label: Approach
+    type: string
+  - name: impact
+    label: Impact
+    type: string
+  - name: expertise
+    label: Expertise
+    type: string
+  - name: contact
+    label: Contact
+    type: string
+- name: hero
+  label: Homepage introduction
+  type: file
+  path: content/hero.json
+  format: json
+  fields:
+  - name: eyebrow
+    label: Eyebrow
+    type: string
+  - name: headline
+    label: Headline
+    type: string
+    required: true
+  - name: accent_line
+    label: Accent line
+    type: string
+    required: true
+  - name: introduction
+    label: Introduction
+    type: text
+  - name: primary_button
+    label: Primary button
+    type: string
+  - name: secondary_button
+    label: Secondary button
+    type: string
+  - name: attributes
+    label: Attributes
+    type: string
+    list: true
+  - name: diagram_label
+    label: Diagram label
+    type: string
+  - name: diagram_heading
+    label: Diagram heading
+    type: string
+  - name: diagram_description
+    label: Diagram description
+    type: string
+  - name: steps
+    label: Steps
+    type: object
+    list:
+      min: 4
+      max: 4
+      collapsible:
+        collapsed: true
+        summary: '{title}'
+    fields:
+    - name: title
+      label: Title
+      type: string
+      required: true
+    - name: description
+      label: Description
+      type: text
+    description: The diagram has four stages; edit their names and descriptions.
+  - name: image
+    label: Image
+    type: image
+    options:
+      media: images
+      extensions:
+      - png
+      - jpg
+      - jpeg
+      - webp
+      - gif
+      rename: safe
+    description: Optional. Upload an image or leave empty to keep the current text-based
+      design.
+  - name: image_description
+    label: Image description
+    type: string
+    description: Briefly describe this image for visitors using a screen reader.
+- name: highlights
+  label: Experience highlights
+  type: file
+  path: content/highlights.json
+  format: json
+  fields:
+  - name: items
+    label: Items
+    type: object
+    list:
+      min: 1
+      max: 12
+      collapsible:
+        collapsed: true
+        summary: '{value}'
+    fields:
+    - name: value
+      label: Value
+      type: string
+    - name: description
+      label: Description
+      type: text
+- name: services
+  label: Services
+  type: file
+  path: content/services.json
+  format: json
+  fields:
+  - name: eyebrow
+    label: Eyebrow
+    type: string
+  - name: heading
+    label: Heading
+    type: string
+    required: true
+  - name: description
+    label: Description
+    type: text
+  - name: cards
+    label: Cards
+    type: object
+    list:
+      min: 1
+      max: 12
+      collapsible:
+        collapsed: true
+        summary: '{title}'
+    fields:
+    - name: title
+      label: Title
+      type: string
+      required: true
+    - name: description
+      label: Description
+      type: text
+    - name: bullets
+      label: Bullets
+      type: string
+      list: true
+    - name: icon
+      label: Icon
+      type: select
+      options:
+        values:
+        - strategy
+        - evidence
+        - launch
+        - people
+        - communications
+        - governance
+    - name: image
+      label: Image
+      type: image
+      options:
+        media: images
+        extensions:
+        - png
+        - jpg
+        - jpeg
+        - webp
+        - gif
+        rename: safe
+      description: Optional. Upload an image or leave empty to keep the current text-based
+        design.
+    - name: image_description
+      label: Image description
+      type: string
+      description: Briefly describe this image for visitors using a screen reader.
+- name: approach
+  label: Working approach
+  type: file
+  path: content/approach.json
+  format: json
+  fields:
+  - name: eyebrow
+    label: Eyebrow
+    type: string
+  - name: heading
+    label: Heading
+    type: string
+    required: true
+  - name: description
+    label: Description
+    type: text
+  - name: button
+    label: Button
+    type: string
+  - name: steps
+    label: Steps
+    type: object
+    list:
+      min: 1
+      max: 12
+      collapsible:
+        collapsed: true
+        summary: '{title}'
+    fields:
+    - name: title
+      label: Title
+      type: string
+      required: true
+    - name: description
+      label: Description
+      type: text
+- name: impact
+  label: Selected impact
+  type: file
+  path: content/impact.json
+  format: json
+  fields:
+  - name: eyebrow
+    label: Eyebrow
+    type: string
+  - name: heading
+    label: Heading
+    type: string
+    required: true
+  - name: description
+    label: Description
+    type: text
+  - name: cases
+    label: Cases
+    type: object
+    list:
+      min: 1
+      max: 12
+      collapsible:
+        collapsed: true
+        summary: '{title}'
+    fields:
+    - name: category
+      label: Category
+      type: string
+    - name: topic
+      label: Topic
+      type: string
+    - name: title
+      label: Title
+      type: string
+      required: true
+    - name: description
+      label: Description
+      type: text
+    - name: result
+      label: Result
+      type: string
+    - name: result_description
+      label: Result description
+      type: text
+    - name: featured
+      label: Featured
+      type: boolean
+      description: Show this case using the highlighted card style.
+    - name: image
+      label: Image
+      type: image
+      options:
+        media: images
+        extensions:
+        - png
+        - jpg
+        - jpeg
+        - webp
+        - gif
+        rename: safe
+      description: Optional. Upload an image or leave empty to keep the current text-based
+        design.
+    - name: image_description
+      label: Image description
+      type: string
+      description: Briefly describe this image for visitors using a screen reader.
+  - name: footnote
+    label: Footnote
+    type: text
+- name: expertise
+  label: Expertise
+  type: file
+  path: content/expertise.json
+  format: json
+  fields:
+  - name: eyebrow
+    label: Eyebrow
+    type: string
+  - name: heading
+    label: Heading
+    type: string
+    required: true
+  - name: introduction
+    label: Introduction
+    type: text
+  - name: description
+    label: Description
+    type: text
+  - name: facts
+    label: Facts
+    type: object
+    list:
+      min: 1
+      max: 12
+      collapsible:
+        collapsed: true
+        summary: '{title}'
+    fields:
+    - name: title
+      label: Title
+      type: string
+      required: true
+    - name: description
+      label: Description
+      type: text
+  - name: image
+    label: Image
+    type: image
+    options:
+      media: images
+      extensions:
+      - png
+      - jpg
+      - jpeg
+      - webp
+      - gif
+      rename: safe
+    description: Optional. Upload an image or leave empty to keep the current text-based
+      design.
+  - name: image_description
+    label: Image description
+    type: string
+    description: Briefly describe this image for visitors using a screen reader.
+- name: engagement
+  label: Engagement options
+  type: file
+  path: content/engagement.json
+  format: json
+  fields:
+  - name: eyebrow
+    label: Eyebrow
+    type: string
+  - name: heading
+    label: Heading
+    type: string
+    required: true
+  - name: cards
+    label: Cards
+    type: object
+    list:
+      min: 1
+      max: 12
+      collapsible:
+        collapsed: true
+        summary: '{title}'
+    fields:
+    - name: title
+      label: Title
+      type: string
+      required: true
+    - name: description
+      label: Description
+      type: text
+- name: compliance
+  label: Compliance statement
+  type: file
+  path: content/compliance.json
+  format: json
+  fields:
+  - name: eyebrow
+    label: Eyebrow
+    type: string
+  - name: heading
+    label: Heading
+    type: text
+    required: true
+  - name: description
+    label: Description
+    type: text
+- name: contact
+  label: Contact details
+  type: file
+  path: content/contact.json
+  format: json
+  fields:
+  - name: eyebrow
+    label: Eyebrow
+    type: string
+  - name: heading
+    label: Heading
+    type: string
+    required: true
+  - name: description
+    label: Description
+    type: text
+  - name: email
+    label: Email
+    type: string
+    required: true
+    pattern:
+      regex: ^[^\s@]+@[^\s@]+\.[^\s@]+$
+      message: Enter a valid email address.
+  - name: email_subject
+    label: Email subject
+    type: string
+  - name: email_body
+    label: Email body
+    type: text
+    description: The starting text placed in a visitor’s email when they select the
+      consultation button.
+  - name: button
+    label: Button
+    type: string
+  - name: copy_button
+    label: Copy button
+    type: string
+  - name: location
+    label: Location
+    type: string
+- name: footer
+  label: Footer
+  type: file
+  path: content/footer.json
+  format: json
+  fields:
+  - name: tagline
+    label: Tagline
+    type: string
+  - name: privacy_button
+    label: Privacy button
+    type: string
+  - name: disclaimer
+    label: Disclaimer
+    type: string
+- name: privacy
+  label: Privacy notice
+  type: file
+  path: content/privacy.json
+  format: json
+  fields:
+  - name: eyebrow
+    label: Eyebrow
+    type: string
+  - name: heading
+    label: Heading
+    type: string
+    required: true
+  - name: paragraphs
+    label: Paragraphs
+    type: text
+    list: true
+  - name: close_button
+    label: Close button
+    type: string

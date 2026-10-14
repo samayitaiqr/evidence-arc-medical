@@ -108,4 +108,3 @@ Serve the generated `dist` folder with a static web server to preview. Never put
 - [Pages CMS configuration](https://pagescms.org/docs/configuration/)
 - [Cloudflare Pages Git integration](https://developers.cloudflare.com/pages/configuration/git-integration/)
 - [Cloudflare static HTML hosting](https://developers.cloudflare.com/pages/framework-guides/deploy-anything/)
-

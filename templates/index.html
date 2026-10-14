@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#071b24">
+    <meta name="description" content="{{site.description}}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{site.page_title}}">
+    <meta property="og:description" content="{{site.description}}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{site.page_title}}">
+    <meta name="twitter:description" content="{{site.description}}">
+    <title>{{site.page_title}}</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="stylesheet" href="styles.css">
+    {{{metadata}}}
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" data-header>
+      <div class="shell nav-wrap">
+        <a class="brand" href="#home" aria-label="{{site.brand_name}} home">
+          {{{brand_logo}}}
+          <span><strong>{{site.brand_name}}</strong><small>{{site.brand_subtitle}}</small></span>
+        </a>
+
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-toggle>
+          <span class="sr-only">Toggle menu</span>
+          <span></span><span></span>
+        </button>
+
+        <nav id="site-nav" class="site-nav" aria-label="Primary navigation" data-menu>
+          <a href="#services">{{navigation.services}}</a>
+          <a href="#approach">{{navigation.approach}}</a>
+          <a href="#impact">{{navigation.impact}}</a>
+          <a href="#expertise">{{navigation.expertise}}</a>
+          <a class="nav-cta" href="#contact">{{navigation.contact}}</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="home">
+        <div class="hero-grid-overlay" aria-hidden="true"></div>
+        <div class="shell hero-layout">
+          <div class="hero-copy reveal">
+            <p class="eyebrow"><span></span> {{hero.eyebrow}}</p>
+            <h1>{{hero.headline}}<br><em>{{hero.accent_line}}</em></h1>
+            <p class="hero-lede">{{hero.introduction}}</p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#contact">{{hero.primary_button}} <span aria-hidden="true">↗</span></a>
+              <a class="text-link" href="#services">{{hero.secondary_button}} <span aria-hidden="true">↓</span></a>
+            </div>
+            <div class="hero-credentials" aria-label="Consultancy attributes">{{{hero_attributes}}}</div>
+          </div>
+
+          {{{hero_visual}}}
+        </div>
+      </section>
+
+      <section class="proof-band" aria-label="Selected experience metrics">
+        <div class="shell proof-grid">{{{highlights}}}</div>
+      </section>
+
+      <section class="section services" id="services">
+        <div class="shell">
+          <div class="section-heading reveal">
+            <div>
+              <p class="eyebrow dark"><span></span> {{services.eyebrow}}</p>
+              <h2>{{services.heading}}</h2>
+            </div>
+            <p>{{services.description}}</p>
+          </div>
+
+          <div class="service-grid">{{{services}}}</div>
+        </div>
+      </section>
+
+      <section class="section approach" id="approach">
+        <div class="shell approach-layout">
+          <div class="approach-intro reveal">
+            <p class="eyebrow light"><span></span> {{approach.eyebrow}}</p>
+            <h2>{{approach.heading}}</h2>
+            <p>{{approach.description}}</p>
+            <a class="text-link light-link" href="#contact">{{approach.button}} <span aria-hidden="true">↗</span></a>
+          </div>
+
+          <ol class="approach-list">{{{approach_steps}}}</ol>
+        </div>
+      </section>
+
+      <section class="section impact" id="impact">
+        <div class="shell">
+          <div class="section-heading reveal">
+            <div>
+              <p class="eyebrow dark"><span></span> {{impact.eyebrow}}</p>
+              <h2>{{impact.heading}}</h2>
+            </div>
+            <p>{{impact.description}}</p>
+          </div>
+
+          <div class="case-grid">{{{impact_cases}}}</div>
+          <p class="impact-note">{{impact.footnote}}</p>
+        </div>
+      </section>
+
+      <section class="section expertise" id="expertise">
+        <div class="shell expertise-layout">
+          <div class="expertise-copy reveal">
+            <p class="eyebrow dark"><span></span> {{expertise.eyebrow}}</p>
+            <h2>{{expertise.heading}}</h2>
+            <p class="large-copy">{{expertise.introduction}}</p>
+            <p>{{expertise.description}}</p>
+          {{{expertise_image}}}</div>
+
+          <div class="expertise-panel reveal">{{{expertise_facts}}}</div>
+        </div>
+      </section>
+
+      <section class="section engagement" aria-labelledby="engagement-title">
+        <div class="shell">
+          <div class="engagement-heading reveal">
+            <p class="eyebrow dark"><span></span> {{engagement.eyebrow}}</p>
+            <h2 id="engagement-title">{{engagement.heading}}</h2>
+          </div>
+          <div class="engagement-grid">{{{engagement_cards}}}</div>
+        </div>
+      </section>
+
+      <aside class="compliance" aria-label="Compliance commitment">
+        <div class="shell compliance-layout reveal">
+          <p class="eyebrow light"><span></span> {{compliance.eyebrow}}</p>
+          <h2>{{br:compliance.heading}}</h2>
+          <p>{{compliance.description}}</p>
+        </div>
+      </aside>
+
+      <section class="contact" id="contact">
+        <div class="shell contact-layout reveal">
+          <div>
+            <p class="eyebrow light"><span></span> {{contact.eyebrow}}</p>
+            <h2>{{contact.heading}}</h2>
+          </div>
+          <div class="contact-action">
+            <p>{{contact.description}}</p>
+            <div class="contact-buttons">
+              <a class="button button-light" href="{{{email_link}}}">{{contact.button}} <span aria-hidden="true">↗</span></a>
+              <button class="copy-contact" type="button" data-copy-contact data-contact-email="{{contact.email}}">{{contact.copy_button}}</button>
+            </div>
+            <span class="copy-status" role="status" aria-live="polite" data-copy-status></span>
+            <span class="contact-meta">{{contact.location}}</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-top">
+        <a class="brand footer-brand" href="#home" aria-label="{{site.brand_name}} home">
+          {{{brand_logo}}}
+          <span><strong>{{site.brand_name}}</strong><small>{{site.brand_subtitle}}</small></span>
+        </a>
+        <p>{{footer.tagline}}</p>
+        <div class="footer-links"><a href="#services">{{navigation.services}}</a><a href="#expertise">{{navigation.expertise}}</a><button type="button" data-privacy-open>{{footer.privacy_button}}</button></div>
+      </div>
+      <div class="shell footer-bottom">
+        <span>© <span data-year></span> {{site.business_name}}</span>
+        <span>{{footer.disclaimer}}</span>
+      </div>
+    </footer>
+
+    <dialog class="privacy-dialog" data-privacy-dialog>
+      <button class="dialog-close" type="button" aria-label="Close privacy notice" data-privacy-close>×</button>
+      <p class="eyebrow dark"><span></span> {{privacy.eyebrow}}</p>
+      <h2>{{privacy.heading}}</h2>
+      {{{privacy_paragraphs}}}
+      <button class="button button-primary" type="button" data-privacy-close>{{privacy.close_button}}</button>
+    </dialog>
+
+    <script src="script.js"></script>
+  </body>
+</html>
