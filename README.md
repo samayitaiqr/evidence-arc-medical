@@ -9,7 +9,7 @@ The existing Evidence Arc design, prepared for hosting independently of ChatGPT 
 - Image uploads for a logo, homepage image, expertise image and service/case images.
 - Add, remove and reorder service cards and other repeated content.
 - A static build with no third-party runtime or package dependencies.
-- A GitHub check that tests and builds changes.
+- GitHub Actions that test, build and publish changes to GitHub Pages once Pages is enabled.
 - An `/admin/` page linking to the content editor.
 
 The Pages CMS configuration is supplied in `.pages.yml`. Routine editors do not need to open or change that file.
@@ -18,15 +18,15 @@ The Pages CMS configuration is supplied in `.pages.yml`. Routine editors do not 
 
 - **Current live website:** [Evidence Arc](https://evidence-arc-medical.aprameyo.chatgpt.site/). This is the original ChatGPT-hosted version.
 - **Content editor:** [Open Pages CMS](https://app.pagescms.org/), sign in with GitHub and select `samayitaiqr/evidence-arc-medical` on `main`.
-- **Independent website hosting:** Cloudflare Pages still needs to be connected to this repository using the settings below. The new live URL will be returned by Cloudflare after the first successful deployment.
+- **GitHub Pages publishing:** prepared in `.github/workflows/pages.yml`; activation in repository settings is still required. Use the **Visit site** link in GitHub's Pages settings after a successful deployment.
 
-This repository contains the prepared, locally checked website. Pages CMS authorization and Cloudflare hosting must be connected before browser edits can update a live website. The original ChatGPT-hosted website is separate and has not been changed by this export.
+This repository contains the prepared, locally checked website. Pages CMS authorization and GitHub Pages activation must be completed before browser edits can update a live website. The original ChatGPT-hosted website is separate and has not been changed by this export.
 
 ## One-time setup
 
 ### 1. Put the project in GitHub
 
-The target repository is [`samayitaiqr/evidence-arc-medical`](https://github.com/samayitaiqr/evidence-arc-medical). A **private repository** is suitable: the website can be public while its source remains private.
+The project is uploaded to [`samayitaiqr/evidence-arc-medical`](https://github.com/samayitaiqr/evidence-arc-medical). It is currently **private**. GitHub Pages from a private personal repository requires GitHub Pro; GitHub Free requires a public repository. Changing repository visibility also exposes its source and history, so it is a separate owner decision.
 
 Upload or push this complete project with `.pages.yml` at the repository root, on the `main` branch. Keep the `content`, `templates`, `public` and `scripts` folders together. The `dist` directory is generated during publishing and need not be committed.
 
@@ -39,24 +39,18 @@ Upload or push this complete project with `.pages.yml` at the repository root, o
 
 The editor will read the supplied configuration and show the content sections automatically. You do not need to create a new configuration or write code.
 
-### 3. Connect hosting
+### 3. Enable GitHub Pages
 
-Create a **Cloudflare Pages** project using its Git integration, and authorize access to the Evidence Arc repository. Select these settings:
+1. Open this repository's **Settings → Pages**.
+2. Under **Build and deployment**, set **Source** to **GitHub Actions**.
+3. Open **Actions → Publish website to GitHub Pages → Run workflow**, selecting `main`.
+4. Wait for the build and deployment to succeed, then use **Visit site** in the Pages settings.
 
-| Setting | Value |
-| --- | --- |
-| Production branch | `main` |
-| Framework preset | None |
-| Build command | `npm test && npm run build` |
-| Build output directory | `dist` |
-| Root directory | Repository root |
-| Node version | 24 (also specified in `.node-version`) |
+If GitHub asks for an upgrade, the current plan does not support Pages from this private repository. The owner must choose whether to use GitHub Pro or make the source repository public before Pages can be activated.
 
-Deploy the project. Cloudflare provides a `pages.dev` address, and later you can attach a purchased domain through its custom-domain settings.
+The supplied workflow tests the site, builds `dist`, and publishes only the generated website. It also takes the site's correct base address from GitHub so images and navigation work under the repository path. No domain purchase is needed.
 
-Once the final address is known, open **Brand and website settings** in Pages CMS, fill in **Website url**, and save. Leaving it blank during setup lets Cloudflare supply the deployment address. No domain purchase is needed to test the website.
-
-The GitHub repository is used for source storage and editing. This project is configured for Cloudflare hosting rather than GitHub Pages.
+Leave **Website url** blank in Pages CMS while using the GitHub-assigned address. To use a purchased domain later, first configure it in **Settings → Pages**, then enter that address in **Brand and website settings**. GitHub's hosting usage limits apply; review its restrictions before using Pages for commercial transactions or an online business.
 
 ## Your everyday editing workflow
 
@@ -65,9 +59,9 @@ The GitHub repository is used for source storage and editing. This project is co
 3. Choose a section such as **Services**, **Contact details** or **Homepage introduction**.
 4. Change text, reorder cards, or choose an uploaded image.
 5. Select **Save**. Pages CMS commits the changes to GitHub.
-6. Cloudflare builds and publishes the update. Check the live website when the deployment succeeds.
+6. GitHub Actions builds and publishes the update. Check the live website when the deployment succeeds.
 
-Saving on `main` starts publication when the Git integration is connected. For a change you want to review before publishing, use a separate branch and its preview, then merge it when ready.
+Saving on `main` starts publication when GitHub Pages is enabled. For a change you want to review before publishing, use a separate branch and merge it when ready.
 
 ### Images
 
@@ -101,10 +95,11 @@ Serve the generated `dist` folder with a static web server to preview. Never put
 - `scripts/build.mjs`: generates the static website and metadata.
 - `test/site.test.mjs`: content editing, independence and input validation checks.
 - `.github/workflows/validate.yml`: GitHub checks on pushes and pull requests.
+- `.github/workflows/pages.yml`: GitHub Pages publication on pushes to `main` or manual runs.
 
 ## References
 
 - [Pages CMS setup](https://pagescms.org/docs/quick-start/)
 - [Pages CMS configuration](https://pagescms.org/docs/configuration/)
-- [Cloudflare Pages Git integration](https://developers.cloudflare.com/pages/configuration/git-integration/)
-- [Cloudflare static HTML hosting](https://developers.cloudflare.com/pages/framework-guides/deploy-anything/)
+- [GitHub Pages setup](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
+- [GitHub Pages usage limits](https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits)

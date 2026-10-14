@@ -27,8 +27,8 @@ function publicUrl(value) {
   if (!value) return '';
   let url;
   try { url = new URL(value); } catch { throw new Error('Website address must be a full https:// address.'); }
-  if (!['https:', 'http:'].includes(url.protocol) || url.username || url.password || url.search || url.hash || url.pathname !== '/') throw new Error('Website address must be a domain without a path, query or credentials.');
-  return url.origin;
+  if (!['https:', 'http:'].includes(url.protocol) || url.username || url.password || url.search || url.hash) throw new Error('Website address must be an http(s) address without a query or credentials.');
+  return url.href.replace(/\/+$/, '');
 }
 
 function validate(data) {
@@ -46,15 +46,18 @@ function validate(data) {
   if (!Array.isArray(data.hero.steps) || data.hero.steps.length !== 4) throw new Error('The homepage diagram requires four stages.');
 }
 
-export function renderSite(data, { root = projectRoot, hostingUrl = process.env.CF_PAGES_URL || '' } = {}) {
+export function renderSite(data, { root = projectRoot, hostingUrl = process.env.SITE_URL || process.env.CF_PAGES_URL || '' } = {}) {
   validate(data);
   const e = escapeHtml;
   const base = publicUrl(data.site.website_url || hostingUrl);
+  const basePath = base ? new URL(base).pathname.replace(/\/+$/, '') : '';
+  const siteRoot = `${basePath}/`;
+  const asset = (path) => `${basePath}${path}`;
   const icons = JSON.parse(readFileSync(join(root, 'templates/icons.json'), 'utf8'));
-  const photo = (item, className = 'content-image', loading = 'lazy') => item.image ? `<img class="${className}" src="${e(imagePath(item.image, root))}" alt="${e(item.image_description)}" loading="${loading}" decoding="async">` : '';
+  const photo = (item, className = 'content-image', loading = 'lazy') => item.image ? `<img class="${className}" src="${e(asset(imagePath(item.image, root)))}" alt="${e(item.image_description)}" loading="${loading}" decoding="async">` : '';
   const logoPath = imagePath(data.site.logo, root);
   const socialPath = imagePath(data.site.social_image, root);
-  const absolute = (path) => base ? new URL(path, base).href : path;
+  const absolute = (path) => base ? `${base}${path}` : path;
   const schema = {
     '@context': 'https://schema.org', '@type': 'ProfessionalService', name: data.site.business_name,
     description: data.site.description, email: data.contact.email,
@@ -64,7 +67,7 @@ export function renderSite(data, { root = projectRoot, hostingUrl = process.env.
   const structuredData = JSON.stringify(schema).replace(/</g, '\\u003c').replace(/\u2028/g, '\\u2028').replace(/\u2029/g, '\\u2029');
   const emailQuery = new URLSearchParams({ subject: data.contact.email_subject || '', body: data.contact.email_body || '' });
   const raw = {
-    brand_logo: logoPath ? `<img class="brand-image" src="${e(logoPath)}" alt="">` : readFileSync(join(root,'templates/logo.html'),'utf8'),
+    brand_logo: logoPath ? `<img class="brand-image" src="${e(asset(logoPath))}" alt="">` : readFileSync(join(root,'templates/logo.html'),'utf8'),
     metadata: `${base ? `<link rel="canonical" href="${e(base)}"><meta property="og:url" content="${e(base)}">` : ''}${socialPath ? `<meta property="og:image" content="${e(absolute(socialPath))}"><meta name="twitter:image" content="${e(absolute(socialPath))}"><meta property="og:image:alt" content="${e(data.site.social_image_description)}">` : ''}<script type="application/ld+json">${structuredData}</script>`,
     email_link: e(`mailto:${data.contact.email}?${emailQuery}`),
     hero_attributes: list(data.hero.attributes).map((item) => `<span>${e(item)}</span>`).join('\n'),
@@ -93,9 +96,10 @@ export function renderSite(data, { root = projectRoot, hostingUrl = process.env.
   const page = expand(readFileSync(join(root,'templates/index.html'),'utf8'));
   return {
     html: page,
-    robots: `User-agent: *\nAllow: /\nDisallow: /admin/\n${base ? `Sitemap: ${base}/sitemap.xml\n` : ''}`,
+    robots: `User-agent: *\nAllow: ${siteRoot}\nDisallow: ${siteRoot}admin/\n${base ? `Sitemap: ${base}/sitemap.xml\n` : ''}`,
     sitemap: base ? `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>${e(base)}/</loc></url></urlset>\n` : null,
-    manifest: JSON.stringify({name:data.site.business_name, short_name:data.site.brand_name, start_url:'/', display:'browser', theme_color:'#111d43', background_color:'#f8f6f5', icons:[{src:'/favicon.svg',sizes:'any',type:'image/svg+xml'}]},null,2)
+    manifest: JSON.stringify({name:data.site.business_name, short_name:data.site.brand_name, start_url:siteRoot, scope:siteRoot, display:'browser', theme_color:'#111d43', background_color:'#f8f6f5', icons:[{src:asset('/favicon.svg'),sizes:'any',type:'image/svg+xml'}]},null,2),
+    notFound: readFileSync(join(root,'public/404.html'),'utf8').replaceAll('{{site_root}}', e(siteRoot))
   };
 }
 
@@ -109,6 +113,7 @@ export function build({ root = projectRoot, outDir = join(root,'dist'), data = l
   cpSync(join(root,'public'),destination,{recursive:true});
   rmSync(join(destination,'uploads/.gitkeep'),{force:true});
   writeFileSync(join(destination,'index.html'),rendered.html);
+  writeFileSync(join(destination,'404.html'),rendered.notFound);
   writeFileSync(join(destination,'robots.txt'),rendered.robots);
   if (rendered.sitemap) writeFileSync(join(destination,'sitemap.xml'),rendered.sitemap);
   writeFileSync(join(destination,'site.webmanifest'),rendered.manifest);

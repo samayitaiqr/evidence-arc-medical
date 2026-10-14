@@ -82,3 +82,29 @@ test('custom domain replaces hosting URLs throughout metadata', () => {
   assert.ok(!result.html.includes('preview.pages.dev'));
   assert.ok(result.sitemap.includes('https://www.example.org/'));
 });
+
+test('GitHub project hosting keeps images, metadata and navigation within the project', () => {
+  const data = loadContent();
+  data.site.logo = '/social-card.png';
+  data.hero.image = '/social-card.png';
+  data.services.cards[0].image = '/social-card.png';
+  const base = 'https://samayitaiqr.github.io/evidence-arc-medical';
+  const result = renderSite(data, {hostingUrl: `${base}/`});
+  assert.ok(result.html.includes(`rel="canonical" href="${base}"`));
+  assert.ok(result.html.includes(`content="${base}/social-card.png"`));
+  assert.ok(result.html.includes('src="/evidence-arc-medical/social-card.png"'));
+  assert.ok(!result.html.includes('src="/social-card.png"'));
+  assert.ok(result.sitemap.includes(`<loc>${base}/</loc>`));
+  assert.ok(result.robots.includes(`${base}/sitemap.xml`));
+  const manifest = JSON.parse(result.manifest);
+  assert.equal(manifest.start_url, '/evidence-arc-medical/');
+  assert.equal(manifest.icons[0].src, '/evidence-arc-medical/favicon.svg');
+  assert.ok(result.notFound.includes('href="/evidence-arc-medical/"'));
+  assert.ok(!result.notFound.includes('{{'));
+
+  data.site.website_url = 'https://www.example.org';
+  const custom = renderSite(data, {hostingUrl: `${base}/`});
+  assert.ok(custom.html.includes('src="/social-card.png"'));
+  assert.ok(!custom.html.includes('/evidence-arc-medical/'));
+  assert.equal(JSON.parse(custom.manifest).start_url, '/');
+});
